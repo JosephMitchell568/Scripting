@@ -1,1 +1,5 @@
+1) Run 'aud.py music.mp3 > dat'
+2) Run 'perl aud.pl > cgen_music'
 
+cgen_music file holds the code generated music data in 
+ 4Kb block RAM chunks. 
