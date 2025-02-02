@@ -26,48 +26,48 @@ f2 = open("UARTcaseStatementGen.txt","w")#UART case statement generation
 # 41 still 6 bits now! Messages will be capital alphas, decimal digits, spaces, colons, underscores, square brackets
 # I care about the decimal digits, space, and colon
 # 0 ->  032 8'h20 -> ' '
-# 1 ->  048 8'h30 -> 0
-# 2 ->  049 8'h31 -> 1
-# 3 ->  050 8'h32 -> 2
-# 4 ->  051 8'h33 -> 3
-# 5 ->  052 8'h34 -> 4
-# 6 ->  053 8'h35 -> 5
-# 7 ->  054 8'h36 -> 6
-# 8 ->  055 8'h37 -> 7
-# 9 ->  056 8'h38 -> 8
-# 10 -> 057 8'h39 -> 9
-# 11 -> 058 8'h3A -> :
+# 1 ->  045 8'h2D -> _        Underscore is 2D, not 5F
+# 2 ->  048 8'h30 -> 0
+# 3 ->  049 8'h31 -> 1
+# 4 ->  050 8'h32 -> 2
+# 5 ->  051 8'h33 -> 3
+# 6 ->  052 8'h34 -> 4
+# 7 ->  053 8'h35 -> 5
+# 8 ->  054 8'h36 -> 6
+# 9 ->  055 8'h37 -> 7
+# 10 -> 056 8'h38 -> 8
+# 11 -> 057 8'h39 -> 9
+# 12 -> 058 8'h3A -> :
 
 # I care about the upper case alphas, square brackets, underscore
-# 12 -> 065 8'h41 -> A
-# 13 -> 066 8'h42 -> B
-# 14 -> 067 8'h43 -> C
-# 15 -> 068 8'h44 -> D
-# 16 -> 069 8'h45 -> E
-# 17 -> 070 8'h46 -> F
-# 18 -> 071 8'h47 -> G
-# 19 -> 072 8'h48 -> H
-# 20 -> 073 8'h49 -> I
-# 21 -> 074 8'h4A -> J
-# 22 -> 075 8'h4B -> K
-# 23 -> 076 8'h4C -> L
-# 24 -> 077 8'h4D -> M
-# 25 -> 078 8'h4E -> N
-# 26 -> 079 8'h4F -> O
-# 27 -> 080 8'h50 -> P
-# 28 -> 081 8'h51 -> Q
-# 29 -> 082 8'h52 -> R
-# 30 -> 083 8'h53 -> S
-# 31 -> 084 8'h54 -> T
-# 32 -> 085 8'h55 -> U
-# 33 -> 086 8'h56 -> V
-# 34 -> 087 8'h57 -> W
-# 35 -> 088 8'h58 -> X
-# 36 -> 089 8'h59 -> Y
-# 37 -> 090 8'h5A -> Z
-# 38 -> 091 8'h5B -> [
-# 39 -> 093 8'h5D -> ]
-# 40 -> 095 8'h5F -> _
+# 13 -> 065 8'h41 -> A
+# 14 -> 066 8'h42 -> B
+# 15 -> 067 8'h43 -> C
+# 16 -> 068 8'h44 -> D
+# 17 -> 069 8'h45 -> E
+# 18 -> 070 8'h46 -> F
+# 19 -> 071 8'h47 -> G
+# 20 -> 072 8'h48 -> H
+# 21 -> 073 8'h49 -> I
+# 22 -> 074 8'h4A -> J
+# 23 -> 075 8'h4B -> K
+# 24 -> 076 8'h4C -> L
+# 25 -> 077 8'h4D -> M
+# 26 -> 078 8'h4E -> N
+# 27 -> 079 8'h4F -> O
+# 28 -> 080 8'h50 -> P
+# 29 -> 081 8'h51 -> Q
+# 30 -> 082 8'h52 -> R
+# 31 -> 083 8'h53 -> S
+# 32 -> 084 8'h54 -> T
+# 33 -> 085 8'h55 -> U
+# 34 -> 086 8'h56 -> V
+# 35 -> 087 8'h57 -> W
+# 36 -> 088 8'h58 -> X
+# 37 -> 089 8'h59 -> Y
+# 38 -> 090 8'h5A -> Z
+# 39 -> 091 8'h5B -> [
+# 40 -> 093 8'h5D -> ]
 
 index = 0
 
@@ -159,8 +159,9 @@ for line in lines:
   elif char == ']':
    string = "16'd%d: tx_str <= 8'h%s;\n" % (index,"5D")
   else:# Must be an underscore
-   string = "16'd%d: tx_str <= 8'h%s;\n" % (index,"5F")
-  f2.write(string)#Write the case statement entry to text file
+   string = "16'd%d: tx_str <= 8'h%s;\n" % (index,"2D")
+  if char != '\n':
+   f2.write(string)#Write the case statement entry to text file
   index = index + 1 #Point to next address
 
 f.close()
