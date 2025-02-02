@@ -1,0 +1,2 @@
+This script is used to generate several case statements for a 16 bit addresssed case statement that assigns ASCII values to an 8 bit data wire to sent over UART.
+The ASCII Table is limited in this example to Digits, Capital Letters, Left/Right Square Brackets, colon, space, underscore for 41 unique ASCII characters.
